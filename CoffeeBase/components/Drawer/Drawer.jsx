@@ -87,6 +87,9 @@ const Drawer = ({ children }) => {
               <Link style={styles.link} href="settings" onPress={toggleSidebar}>
                 <Text>Settings</Text>
               </Link>
+              <Link style={styles.link} href="login" onPress={toggleSidebar}>
+                <Text>Login</Text>
+              </Link>
             </>
           )}
         </Animated.View>

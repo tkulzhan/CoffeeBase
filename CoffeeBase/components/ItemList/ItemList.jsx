@@ -1,20 +1,47 @@
-import { View, ActivityIndicator } from "react-native";
-import Item from "../Item/Item";
-import img from "../../assets/img/Cups.png";
+import {
+  View,
+  ActivityIndicator,
+  FlatList,
+  Text,
+  TouchableOpacity,
+  Image,
+} from "react-native";
 import { useState, useEffect } from "react";
+import { useRouter } from "expo-router";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import { useDispatch } from "react-redux";
 import { setMarket } from "../../store/marketSlice";
+import styles from "./styles";
 
 const ItemList = () => {
   const [data, setData] = useState([]);
   const [error, SetError] = useState("");
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     fetchData();
   }, []);
+
+  const renderCoffeeItem = ({ item }) => (
+    <TouchableOpacity
+      style={styles.coffeeItemContainer}
+      onPress={() => {
+        router.push(`/drink/${item._id}`);
+      }}
+    >
+      <Image
+        source={require(`../../assets/img/c7.png`)}
+        style={styles.coffeeItemImage}
+      />
+      <View style={styles.coffeeItemDetails}>
+        <Text style={styles.coffeeItemTitle}>{item.title}</Text>
+        <Text style={styles.coffeeItemDescription}>{item.description}</Text>
+        <Text style={styles.coffeeItemPrice}>${item.price}</Text>
+      </View>
+    </TouchableOpacity>
+  );
 
   const fetchData = async () => {
     try {
@@ -24,9 +51,11 @@ const ItemList = () => {
       const data = await response.json();
       dispatch(setMarket(data));
       setData(data);
+      console.log(data);
       SetError("");
     } catch (error) {
-      console.log(e);
+      console.log(error);
+      SetError("fetch");
     } finally {
       setLoading(false);
     }
@@ -34,6 +63,7 @@ const ItemList = () => {
 
   const onRetryFetch = () => {
     SetError("");
+    setLoading(true);
     fetchData();
   };
 
@@ -56,16 +86,16 @@ const ItemList = () => {
       />
     );
   }
+
   return (
-    <View
-      style={{
-        flexDirection: "row",
-        flexWrap: "wrap",
-      }}
-    >
-      {data.map((i) => {
-        return <Item img={img} item={i} key={i._id} />;
-      })}
+    <View style={styles.container}>
+      <Text style={styles.title}>Coffee Marketplace</Text>
+      <FlatList
+        data={data}
+        renderItem={renderCoffeeItem}
+        keyExtractor={(item) => item._id}
+        style={styles.coffeeList}
+      />
     </View>
   );
 };

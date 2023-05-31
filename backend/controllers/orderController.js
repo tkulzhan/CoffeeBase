@@ -29,7 +29,7 @@ const createOrder = async (req, res) => {
 
 const getListOfOrders = async (req, res) => {
   const listOfOrders = await Order.find().select(
-    "name description ingredients"
+    "title description price"
   );
   if (!listOfOrders) res.status(400).send("Bad request!");
   res.json(listOfOrders);

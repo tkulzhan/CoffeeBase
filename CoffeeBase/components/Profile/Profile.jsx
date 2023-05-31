@@ -10,14 +10,17 @@ import styles from "./profile.style";
 
 import { useEffect, useState } from "react";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
-import profile from "../../assets/img/p.png";
+import profile from "../../assets/img/user.png";
+import { useSelector } from "react-redux";
 
-const Settings = () => {
+const Profile = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [bio, setBio] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, SetError] = useState("");
+  const user = useSelector((state) => state.user.value);
+  console.log(user);
 
   useEffect(() => {
     fetchUserData();
@@ -26,7 +29,7 @@ const Settings = () => {
   const fetchUserData = async () => {
     try {
       const response = await fetch(
-        "http://localhost:3001/client/api/63f6dba15b0652268baa46c3"
+        `http://localhost:3001/client/api/${user.id}`
       );
       const userData = await response.json();
       setName(userData[0].name);
@@ -43,7 +46,7 @@ const Settings = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        "http://localhost:3001/client/api/updateClient/63f6dba15b0652268baa46c3",
+        `http://localhost:3001/client/api/updateClient/${user.id}`,
         {
           method: "PUT",
           mode: "cors",
@@ -149,4 +152,4 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default Profile;

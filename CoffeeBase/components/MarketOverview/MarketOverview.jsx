@@ -53,6 +53,7 @@ const data = [
 ];
 
 const MarketOverview = () => {
+  const router = useRouter();
   return (
     <View>
       <View style={styles.container}>
@@ -61,7 +62,7 @@ const MarketOverview = () => {
           <View style={styles.subContainer}>
             <Text style={styles.subtitle}>Check our products</Text>
             <TouchableOpacity>
-              <Text style={styles.showAll}>Show all</Text>
+              <Text onPress={() => {router.push("/marketplace")}} style={styles.showAll}>Show all</Text>
             </TouchableOpacity>
           </View>
         </View>

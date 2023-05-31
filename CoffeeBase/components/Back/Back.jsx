@@ -9,12 +9,12 @@ const Back = () => {
   return (
     <TouchableOpacity
       style={{
-        width: "25px",
-        height: "25px",
+        width: 25,
+        height: 25,
         justifyContent: "center",
         alignItems: "center",
-        marginLeft: "10px",
-        marginRight: "20px",
+        marginLeft: 10,
+        marginRight: 20,
       }}
       onPress={() => {
         router.push("/");
@@ -22,7 +22,7 @@ const Back = () => {
     >
       <Image
         source={back}
-        resizeMethod="cover"
+        resizeMode="cover"
         style={{
           height: "100%",
           width: "100%",

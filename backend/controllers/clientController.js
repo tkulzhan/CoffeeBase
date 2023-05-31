@@ -8,19 +8,37 @@ const clientValidationSchema = Joi.object({
 });
 
 const registerClient = async (req, res) => {
-  const salt = await bcrypt.genSalt();
-
-  const client = new Client({
-    name: req.body.name,
-    bio: req.body.bio,
-    email: req.body.email,
-    password: await bcrypt.hash(req.body.password, salt),
-  });
   try {
-    const result = await client.save();
-    console.log(result);
+    const hashed = await bcrypt.hash(req.body.password, 6);
+    const client = new Client({
+      name: req.body.name,
+      bio: "",
+      email: req.body.email,
+      password: hashed,
+      roles: ["user"],
+    });
+    console.log(client);
+    await client.save();
+    res.send(client);
   } catch (err) {
-    console.error(err.message);
+    res.send(err);
+  }
+};
+
+const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const candidate = await Client.findOne({ email: email });
+    if (!candidate) {
+      return res.send({ message: "User not found" });
+    }
+    const c = await bcrypt.compare(password, candidate.password);
+    if (!c) {
+      return res.send({ message: "Password fail" });
+    }
+    res.send(candidate);
+  } catch (e) {
+    res.status(500).send("error");
   }
 };
 
@@ -82,7 +100,7 @@ const updateClientById = async (req, res) => {
         },
       }
     );
-    res.status(200).send({m: "Success"});
+    res.status(200).send({ m: "Success" });
   } catch (e) {
     res.status(400).send("BadRequest");
   }
@@ -107,4 +125,5 @@ module.exports = {
   updateClientById,
   removeClient,
   changeClientOrder,
+  login,
 };

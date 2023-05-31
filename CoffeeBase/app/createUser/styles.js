@@ -2,8 +2,8 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   containerMain: {
-    height: "100vh",
-    width: "100vw",
+    height: "100%",
+    width: "100%",
     flex: 1,
     padding: 10,
     overflowY: "scroll",

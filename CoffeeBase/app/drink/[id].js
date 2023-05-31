@@ -2,23 +2,10 @@ import { View, Text, ActivityIndicator } from "react-native";
 import Drawer from "../../components/Drawer/Drawer";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
-import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import { Provider, useSelector } from "react-redux";
 import { store } from "../../store/store";
 
 const DrinkPage = () => {
-  const [error, SetError] = useState("");
-
-  if (error === "fetch") {
-    return (
-      <Drawer>
-        <ErrorMessage
-          m={"Oops an error occured\nFailed to get our products"}
-          onRetry={onRetryFetch}
-        />
-      </Drawer>
-    );
-  }
   return (
     <Provider store={store}>
       <Drink />
@@ -45,7 +32,6 @@ const Drink = () => {
       }
     }
   };
-
   if (loading) {
     return (
       <Drawer>
@@ -62,7 +48,7 @@ const Drink = () => {
   return (
     <Drawer>
       <View>
-        <Text style={{ color: "#fff" }}>{item.name}</Text>
+        <Text style={{ color: "#fff" }}>{item.description }</Text>
       </View>
     </Drawer>
   );
