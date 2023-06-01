@@ -8,21 +8,17 @@ const orderValidationSchema = Joi.object({
   ingredients: Joi.string().min(5).max(125).required,
 });
 
-const createOrder = async (req, res) => {
-  try {
-  } catch (e) {
-    console.error(e.message);
-  }
-  const order = new Order({
-    title: req.body.title,
-    description: req.body.description,
-    price: Number(req.body.price),
-  });
-  try {
+const createOrder = async (req, res) => {try {
+    const order = new Order({
+      title: req.body.title,
+      description: req.body.description,
+      price: Number(req.body.price),
+    });
+    console.log(order);
     const result = await order.save();
-    console.log(result);
   } catch (e) {
     res.status(500).send("Something failed!");
+    console.log(e);
   }
 };
 
