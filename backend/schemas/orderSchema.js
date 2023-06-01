@@ -21,6 +21,10 @@ const orderSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  description: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = orderSchema;

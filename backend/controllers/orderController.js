@@ -10,14 +10,13 @@ const orderValidationSchema = Joi.object({
 
 const createOrder = async (req, res) => {
   try {
-    const value = await orderValidationSchema.validateAsync(req.body);
   } catch (e) {
     console.error(e.message);
   }
   const order = new Order({
-    name: req.body.name,
-    equipment: req.body.equipment,
-    ingredients: req.body.ingredients,
+    title: req.body.title,
+    description: req.body.description,
+    price: Number(req.body.price),
   });
   try {
     const result = await order.save();
@@ -28,9 +27,7 @@ const createOrder = async (req, res) => {
 };
 
 const getListOfOrders = async (req, res) => {
-  const listOfOrders = await Order.find().select(
-    "title description price"
-  );
+  const listOfOrders = await Order.find().select("title description price");
   if (!listOfOrders) res.status(400).send("Bad request!");
   res.json(listOfOrders);
 };
@@ -41,7 +38,7 @@ const getOrderById = async (req, res) => {
     if (!order) res.status(400).send("Bad request!");
     res.json(order);
   } catch (e) {
-    res.json({})
+    res.json({});
   }
 };
 

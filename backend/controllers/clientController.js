@@ -30,11 +30,11 @@ const login = async (req, res) => {
     const { email, password } = req.body;
     const candidate = await Client.findOne({ email: email });
     if (!candidate) {
-      return res.send({ message: "User not found" });
+      return res.status(400).send({ message: "User not found!" });
     }
     const c = await bcrypt.compare(password, candidate.password);
     if (!c) {
-      return res.send({ message: "Password fail" });
+      return res.status(400).send({ message: "Wring password!" });
     }
     res.send(candidate);
   } catch (e) {

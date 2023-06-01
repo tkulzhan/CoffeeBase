@@ -4,14 +4,14 @@ import {
   SafeAreaView,
   ImageBackground,
   Animated,
-  Text,
 } from "react-native";
-import { Stack, useRouter, Link } from "expo-router";
+import { Stack } from "expo-router";
 import styles from "./drawer.style";
 import Menu from "../Menu/Menu";
 import HeaderSearch from "../HeaderSearch/HeaderSearch";
 import { useState, useRef } from "react";
 import bg from "../../assets/img/bg.jpg";
+import Links from "./Links/Links"
 
 const Drawer = ({ children }) => {
   const [sidebarVisible, setSidebarVisible] = useState(false);
@@ -74,22 +74,7 @@ const Drawer = ({ children }) => {
         <Animated.View style={[styles.sidebar, { width: sidebarWidth }]}>
           {sidebarVisible && (
             <>
-              <Link style={styles.link} href="" onPress={toggleSidebar}>
-                <Text>Home</Text>
-              </Link>
-              <Link
-                style={styles.link}
-                href="marketplace"
-                onPress={toggleSidebar}
-              >
-                <Text>Marketplace</Text>
-              </Link>
-              <Link style={styles.link} href="settings" onPress={toggleSidebar}>
-                <Text>Settings</Text>
-              </Link>
-              <Link style={styles.link} href="login" onPress={toggleSidebar}>
-                <Text>Login</Text>
-              </Link>
+              <Links toggleSidebar={toggleSidebar} />
             </>
           )}
         </Animated.View>

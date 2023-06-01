@@ -5,10 +5,13 @@ import styles from "./styles";
 import user from "../../assets/img/user.png";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/userSlice";
+import { useRouter } from "expo-router";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("")
+  const router = useRouter();
   const dispatch = useDispatch();
 
   const login = () => {
@@ -24,15 +27,23 @@ const LoginForm = () => {
       }),
     })
       .then((res) => res.json())
-      .then((user) => {
-        dispatch(setUser(user));
-        console.log(user);
+      .then((res) => {
+        if (res.message) {
+          setError(res.message)
+        } else {
+          dispatch(setUser(res));
+          router.push("/");
+        }
+      })
+      .catch((e) => {
+        console.log(e);
       });
   };
   return (
     <View style={styles.container}>
       <Image source={user} />
       <Text style={styles.registerTitle}>Sign into your account</Text>
+      <Text style={{color: "red", fontSize: 20}}>{error}</Text>
       <View style={styles.formContainer}>
         <TextInput
           style={styles.input}
