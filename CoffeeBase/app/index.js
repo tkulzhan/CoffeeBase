@@ -8,23 +8,35 @@ import CreateUser from "../components/CreateUser/CreateUser";
 import { store } from "../store/store";
 import { Provider } from "react-redux";
 import { storeData, getData } from "../localStorage/LocalStorage";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import "../locales/index";
+import { useTranslation } from "react-i18next";
+import i18n from "i18next";
 
 const Home = () => {
-  const [d, setD] = useState("");
+  const { t } = useTranslation();
 
   useEffect(() => {
-    getData().then((res) => {
-      setD(res);
-    });
+    async function fetchLanguage() {
+      const language = await getData();
+      if (language) {
+        i18n.changeLanguage(language);
+      }
+    }
+    fetchLanguage();
   }, []);
+
+  const changeLanguage = async (lang) => {
+    await storeData(lang);
+    i18n.changeLanguage(lang);
+  };
 
   return (
     <Provider store={store}>
       <Drawer>
         <View>
           <Welcome />
-          <Text style={{ color: "white" }}>{d}</Text>
+          <Text style={{ color: "white" }}>{t("dummyNamespace.medium")}</Text>
           <News />
           <CreateUser />
           <Tokens />
