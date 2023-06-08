@@ -36,7 +36,7 @@ const data = [
 
 const News = () => {
   const [selectedCard, setSelectedCard] = useState();
-
+  
   const handleCardPress = (item) => {
     setSelectedCard(item.id);
   };
