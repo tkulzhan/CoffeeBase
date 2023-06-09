@@ -11,10 +11,11 @@ import { useRouter } from "expo-router";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import { useDispatch } from "react-redux";
 import { setMarket } from "../../store/marketSlice";
-import styles from "./styles";
+import defaultStyles from "./styles";
+import lightStyles from "./lightItemList";
 import "../../locales/index";
 import { useTranslation } from "react-i18next";
-import i18n from "i18next";
+import { getTheme } from "../../localStorage/LocalStorage";
 
 const ItemList = () => {
   const [data, setData] = useState([]);
@@ -27,6 +28,21 @@ const ItemList = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const [theme, setTheme] = useState("default");
+
+  useEffect(() => {
+    const fetchTheme = async () => {
+      const storedTheme = await getTheme();
+      if (storedTheme) {
+        setTheme(storedTheme);
+      }
+    };
+
+    fetchTheme();
+  }, []);
+
+  const styles = theme === "default" ? defaultStyles : lightStyles;
 
   const renderCoffeeItem = ({ item }) => (
     <TouchableOpacity

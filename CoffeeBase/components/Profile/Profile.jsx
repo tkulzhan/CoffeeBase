@@ -6,8 +6,8 @@ import {
   Image,
   ActivityIndicator,
 } from "react-native";
-import styles from "./profile.style";
-
+import defaultStyles from "./profile.style";
+import lightStyles from "./lightProfile";
 import { useEffect, useState } from "react";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import profile from "../../assets/img/user.png";
@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 import { useRouter } from "expo-router";
 import "../../locales/index";
 import { useTranslation } from "react-i18next";
+import { getTheme } from "../../localStorage/LocalStorage";
 
 const Profile = () => {
   const [name, setName] = useState("");
@@ -29,6 +30,21 @@ const Profile = () => {
   useEffect(() => {
     fetchUserData();
   }, []);
+
+  const [theme, setTheme] = useState("default");
+
+  useEffect(() => {
+    const fetchTheme = async () => {
+      const storedTheme = await getTheme();
+      if (storedTheme) {
+        setTheme(storedTheme);
+      }
+    };
+
+    fetchTheme();
+  }, []);
+
+  const styles = theme === "default" ? defaultStyles : lightStyles;
 
   const fetchUserData = async () => {
     try {
@@ -88,7 +104,7 @@ const Profile = () => {
     updateUserData();
   };
   if (user.id === "") {
-    router.push("/login");
+    return <></>;
   }
   if (loading) {
     return (
@@ -103,18 +119,12 @@ const Profile = () => {
   }
   if (error === "fetch") {
     return (
-      <ErrorMessage
-        m={`${t("oops")}\n${t("fd")}`}
-        onRetry={onRetryFetch}
-      />
+      <ErrorMessage m={`${t("oops")}\n${t("fd")}`} onRetry={onRetryFetch} />
     );
   }
   if (error === "update") {
     return (
-      <ErrorMessage
-        m={`${t("oops")}\n${t("ud")}`}
-        onRetry={onRetryUpdate}
-      />
+      <ErrorMessage m={`${t("oops")}\n${t("ud")}`} onRetry={onRetryUpdate} />
     );
   }
   return (

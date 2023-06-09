@@ -1,13 +1,15 @@
 import { Text, View, Image, TextInput, TouchableOpacity } from "react-native";
 
-import { useState } from "react";
-import styles from "./styles";
+import { useState, useEffect } from "react";
+import defaultStyles from "./styles";
+import lightStyles from "./lightLoginForm";
 import user from "../../assets/img/user.png";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/userSlice";
 import { useRouter } from "expo-router";
 import "../../locales/index";
 import { useTranslation } from "react-i18next";
+import { getTheme } from "../../localStorage/LocalStorage";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -16,6 +18,21 @@ const LoginForm = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { t } = useTranslation();
+
+  const [theme, setTheme] = useState("default");
+
+  useEffect(() => {
+    const fetchTheme = async () => {
+      const storedTheme = await getTheme();
+      if (storedTheme) {
+        setTheme(storedTheme);
+      }
+    };
+
+    fetchTheme();
+  }, []);
+
+  const styles = theme === "default" ? defaultStyles : lightStyles;
 
   const login = () => {
     fetch("http://localhost:3001/client/api/login", {

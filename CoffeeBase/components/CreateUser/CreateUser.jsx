@@ -1,28 +1,35 @@
 import { useState } from "react";
 import { useRouter } from "expo-router";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  FlatList,
-  Image,
-  ActivityIndicator,
-  ImageBackground,
-} from "react-native";
-import styles from "./styles";
+import { View, Text, TouchableOpacity, Image } from "react-native";
+import defaultStyles from "./styles";
+import lightStyles from "./lightTheme";
 import user from "../../assets/img/user.png";
 import "../../locales/index";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
+import { getTheme } from "../../localStorage/LocalStorage";
 
 const CreateUser = () => {
   const router = useRouter();
   const { t } = useTranslation();
+  const [theme, setTheme] = useState("default");
+
+  useEffect(() => {
+    const fetchTheme = async () => {
+      const storedTheme = await getTheme();
+      if (storedTheme) {
+        setTheme(storedTheme);
+      }
+    };
+
+    fetchTheme();
+  }, []);
+
+  const styles = theme === "default" ? defaultStyles : lightStyles;
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
-        <Text style={styles.headerTitle}>
-          {t("cuh")}
-        </Text>
+        <Text style={styles.headerTitle}>{t("cuh")}</Text>
         <TouchableOpacity
           onPress={() => {
             router.push(`/createUser`);
