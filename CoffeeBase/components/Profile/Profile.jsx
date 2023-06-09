@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import profile from "../../assets/img/user.png";
 import { useSelector } from "react-redux";
-import { useRouter } from "expo-router";
+import { useRouter } from "expo-router"
 
 const Profile = () => {
   const [name, setName] = useState("");
@@ -84,8 +84,8 @@ const Profile = () => {
     SetError("");
     updateUserData();
   };
-  if (user.id === "") {
-    router.push("/login");
+  if(user.id === "") {
+    router.push("/login")
   }
   if (loading) {
     return (

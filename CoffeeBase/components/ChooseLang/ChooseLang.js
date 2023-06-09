@@ -1,4 +1,4 @@
-import { storeData, getData } from "../../localStorage/LocalStorage";
+import { storeLang, getLang } from "../../localStorage/LocalStorage";
 import { useEffect } from "react";
 import "../../locales/index";
 import i18n from "i18next";
@@ -7,7 +7,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 function ChooseLang() {
   useEffect(() => {
     async function fetchLanguage() {
-      const language = await getData();
+      const language = await getLang();
       if (language) {
         i18n.changeLanguage(language);
       }
@@ -16,7 +16,7 @@ function ChooseLang() {
   }, []);
 
   const changeLanguage = async (lang) => {
-    await storeData(lang);
+    await storeLang(lang);
     i18n.changeLanguage(lang);
   };
 

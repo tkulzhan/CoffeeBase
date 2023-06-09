@@ -7,7 +7,7 @@ import Tokens from "../components/Tokens/Tokens";
 import CreateUser from "../components/CreateUser/CreateUser";
 import { store } from "../store/store";
 import { Provider } from "react-redux";
-import { getData } from "../localStorage/LocalStorage";
+import { getLang } from "../localStorage/LocalStorage";
 import { useEffect } from "react";
 import "../locales/index";
 import { useTranslation } from "react-i18next";
@@ -18,7 +18,7 @@ const Home = () => {
 
   useEffect(() => {
     async function fetchLanguage() {
-      const language = await getData();
+      const language = await getLang();
       if (language) {
         i18n.changeLanguage(language);
       }
