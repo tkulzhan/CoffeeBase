@@ -4,12 +4,15 @@ import styles from "../drawer.style";
 import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "../../../store/userSlice";
 import { useEffect, useState } from "react";
+import "../../../locales/index";
+import { useTranslation } from "react-i18next";
 
-function Links({ toggleSidebar }) {
+function Links({ toggleSidebar, style }) {
   const user = useSelector((state) => state.user.value);
   const [roles, setRoles] = useState([]);
   const dispatch = useDispatch();
   const router = useRouter();
+  const { t } = useTranslation();
 
   useEffect(() => {
     setRoles(user.roles);
@@ -17,18 +20,18 @@ function Links({ toggleSidebar }) {
 
   return (
     <View>
-      <Link style={styles.link} href="" onPress={toggleSidebar}>
-        <Text>Home</Text>
+      <Link style={style} href="" onPress={toggleSidebar}>
+        <Text>{t("home")}</Text>
       </Link>
-      <Link style={styles.link} href="marketplace" onPress={toggleSidebar}>
-        <Text>Marketplace</Text>
+      <Link style={style} href="marketplace" onPress={toggleSidebar}>
+        <Text>{t("mplace")}</Text>
       </Link>
-      <Link style={styles.link} href="settings" onPress={toggleSidebar}>
-        <Text>Settings</Text>
+      <Link style={style} href="settings" onPress={toggleSidebar}>
+        <Text>{t("settings")}</Text>
       </Link>
       {user.id !== "" ? (
         <Text
-          style={styles.link}
+          style={style}
           onPress={() => {
             dispatch(
               setUser({
@@ -43,16 +46,16 @@ function Links({ toggleSidebar }) {
             router.push("/login");
           }}
         >
-          Logout
+          {t("logout")}
         </Text>
       ) : (
-        <Link style={styles.link} href="login" onPress={toggleSidebar}>
-          <Text>Login</Text>
+        <Link style={style} href="login" onPress={toggleSidebar}>
+          <Text>{t("login")}</Text>
         </Link>
       )}
       {roles.includes("admin") && (
-        <Link style={styles.link} href="admin" onPress={toggleSidebar}>
-          <Text>Admin</Text>
+        <Link style={style} href="admin" onPress={toggleSidebar}>
+          <Text>{t("admin")}</Text>
         </Link>
       )}
     </View>

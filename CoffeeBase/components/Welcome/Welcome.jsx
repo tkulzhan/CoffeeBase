@@ -11,18 +11,18 @@ import { useState } from "react";
 import search from "../../assets/img/search.png";
 import "../../locales/index";
 import { useTranslation } from "react-i18next";
-import i18n from "i18next";
 
 const typesOfCoffee = ["Cyber Space", "Coffee", "Members"];
 
 const Welcome = () => {
   const [activeTabType, setActiveTabType] = useState(typesOfCoffee[0]);
+  const { t } = useTranslation()
   
   return (
     <View>
       <View className={styles.container}>
-        <Text style={styles.hello}>Welcome to Coffee Base!</Text>
-        <Text style={styles.welcomeMessage}>Grab your coffee and enjoy!</Text>
+        <Text style={styles.hello}>{t("welcome")}</Text>
+        <Text style={styles.welcomeMessage}>{t("grab")}</Text>
       </View>
       <View style={styles.searchContainer}>
         <View style={styles.searchWrapper}>
@@ -30,7 +30,7 @@ const Welcome = () => {
             style={styles.searchInput}
             value=""
             onChange={() => {}}
-            placeholder="What are you looking for?"
+            placeholder={t("search")}
           />
         </View>
         <TouchableOpacity style={styles.searchBtn} onPress={() => {}}>

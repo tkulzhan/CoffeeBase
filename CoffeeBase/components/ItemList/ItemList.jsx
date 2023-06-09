@@ -22,6 +22,7 @@ const ItemList = () => {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const router = useRouter();
+  const { t } = useTranslation();
 
   useEffect(() => {
     fetchData();
@@ -92,7 +93,7 @@ const ItemList = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Coffee Marketplace</Text>
+      <Text style={styles.title}>{t("cmp")}</Text>
       <FlatList
         data={data}
         renderItem={renderCoffeeItem}

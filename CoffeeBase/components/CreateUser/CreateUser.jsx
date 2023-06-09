@@ -13,22 +13,22 @@ import styles from "./styles";
 import user from "../../assets/img/user.png";
 import "../../locales/index";
 import { useTranslation } from "react-i18next";
-import i18n from "i18next";
 
 const CreateUser = () => {
   const router = useRouter();
+  const { t } = useTranslation();
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
         <Text style={styles.headerTitle}>
-          Before making any orders, please register your account
+          {t("cuh")}
         </Text>
         <TouchableOpacity
           onPress={() => {
             router.push(`/createUser`);
           }}
         >
-          <Text style={styles.headerBtn}>Create user</Text>
+          <Text style={styles.headerBtn}>{t("cub")}</Text>
         </TouchableOpacity>
       </View>
       <View>

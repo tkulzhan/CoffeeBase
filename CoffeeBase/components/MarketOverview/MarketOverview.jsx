@@ -21,7 +21,6 @@ import cb from "../../assets/img/cb.jpg";
 
 import "../../locales/index";
 import { useTranslation } from "react-i18next";
-import i18n from "i18next";
 
 const data = [
   {
@@ -58,15 +57,23 @@ const data = [
 
 const MarketOverview = () => {
   const router = useRouter();
+  const { t } = useTranslation();
   return (
     <View>
       <View style={styles.container}>
         <View>
-          <Text style={styles.title}>Marketplace Overview</Text>
+          <Text style={styles.title}>{t("mo")}</Text>
           <View style={styles.subContainer}>
-            <Text style={styles.subtitle}>Check our products</Text>
+            <Text style={styles.subtitle}>{t("mos")}</Text>
             <TouchableOpacity>
-              <Text onPress={() => {router.push("/marketplace")}} style={styles.showAll}>Show all</Text>
+              <Text
+                onPress={() => {
+                  router.push("/marketplace");
+                }}
+                style={styles.showAll}
+              >
+                {t("show_all")}
+              </Text>
             </TouchableOpacity>
           </View>
         </View>

@@ -9,7 +9,6 @@ import img4 from "../../assets/img/img4.jpg";
 
 import "../../locales/index";
 import { useTranslation } from "react-i18next";
-import i18n from "i18next";
 
 const data = [
   {
@@ -40,6 +39,7 @@ const data = [
 
 const News = () => {
   const [selectedCard, setSelectedCard] = useState();
+  const { t } = useTranslation();
 
   const handleCardPress = (item) => {
     setSelectedCard(item.id);
@@ -48,9 +48,9 @@ const News = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>News</Text>
+        <Text style={styles.headerTitle}>{t("news")}</Text>
         <TouchableOpacity>
-          <Text style={styles.headerBtn}>Show all</Text>
+          <Text style={styles.headerBtn}>{t("show_all")}</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.cardsContainer}>

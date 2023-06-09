@@ -1,5 +1,29 @@
 {
-  "dummyNamespace": {
-    "medium": "medium is great!"
-  }
+  "welcome": "Welcome to CoffeeBase!",
+  "grab": "Grab your coffee and enjoy!",
+  "search": "What are you looking for?",
+  "news": "News",
+  "show_all": "Show all",
+  "cuh": "Before making any orders, please register your account",
+  "cub": "Register",
+  "tokens": "Explore our tokens",
+  "mo": "Marketplace Overview",
+  "mos": "Check our products",
+  "home": "Home",
+  "mplace": "Marketplace",
+  "settings": "Settings",
+  "logout": "Logout",
+  "login": "Login",
+  "admin": "Admin",
+  "logh": "Sign into your account",
+  "email": "Email",
+  "pwd": "Password",
+  "cmp": "Coffee Marketplace",
+  "bio": "Biography",
+  "unm": "Username",
+  "updp": "Update Profile",
+  "oops": "Oops an error occured",
+  "fd": "Failed to find your data",
+  "ud": "Failed to update profile",
+  "rtr": "Retry"
 }

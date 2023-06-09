@@ -20,7 +20,6 @@ import t6 from "../../assets/img/t6.png";
 
 import "../../locales/index";
 import { useTranslation } from "react-i18next";
-import i18n from "i18next";
 
 const data = [
   {
@@ -50,12 +49,13 @@ const data = [
 ];
 
 const Tokens = () => {
+  const { t } = useTranslation();
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Explore our tokens</Text>
+        <Text style={styles.headerTitle}>{t("tokens")}</Text>
         <TouchableOpacity>
-          <Text style={styles.headerBtn}>Show all</Text>
+          <Text style={styles.headerBtn}>{t("show_all")}</Text>
         </TouchableOpacity>
       </View>
       <FlatList

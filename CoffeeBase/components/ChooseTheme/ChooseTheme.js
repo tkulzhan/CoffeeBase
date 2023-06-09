@@ -1,33 +1,36 @@
 import { storeTheme, getTheme } from "../../localStorage/LocalStorage";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "../../locales/index";
 import { useTranslation } from "react-i18next";
 import i18n from "i18next";
-import { getLang } from "../../localStorage/LocalStorage";
 import { View, Text, TouchableOpacity } from "react-native";
+import { Util } from "expo";
 
-function ChooseTheme({changeTheme}) {
+function ChooseTheme() {
   const { t } = useTranslation();
 
+  const [theme, setTheme] = useState("default");
+
+  const changeTheme = async (value) => {
+    setTheme(value);
+    await storeTheme(value);
+  };
+
   useEffect(() => {
-    async function fetchTheme() {
-      const theme = await getTheme();
-      if (theme) {
-        console.log(theme);
+    const fetchTheme = async () => {
+      const storedTheme = await getTheme();
+      if (storedTheme) {
+        setTheme(storedTheme);
       }
-    }
-    async function fetchLanguage() {
-      const language = await getLang();
-      if (language) {
-        i18n.changeLanguage(language);
-      }
-    }
-    fetchLanguage();
+    };
+
     fetchTheme();
   }, []);
 
   return (
-    <View style={{ marginHorizontal: "12%", backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+    <View
+      style={{ marginHorizontal: "12%", backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+    >
       <Text style={{ color: "white", fontSize: 22, textAlign: "left" }}>
         Choose theme:
       </Text>

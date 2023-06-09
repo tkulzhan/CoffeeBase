@@ -8,14 +8,14 @@ import { setUser } from "../../store/userSlice";
 import { useRouter } from "expo-router";
 import "../../locales/index";
 import { useTranslation } from "react-i18next";
-import i18n from "i18next";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
   const router = useRouter();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const login = () => {
     fetch("http://localhost:3001/client/api/login", {
@@ -32,7 +32,7 @@ const LoginForm = () => {
       .then((res) => res.json())
       .then((res) => {
         if (res.message) {
-          setError(res.message)
+          setError(res.message);
         } else {
           dispatch(setUser(res));
           router.push("/");
@@ -45,12 +45,12 @@ const LoginForm = () => {
   return (
     <View style={styles.container}>
       <Image source={user} />
-      <Text style={styles.registerTitle}>Sign into your account</Text>
-      <Text style={{color: "red", fontSize: 20}}>{error}</Text>
+      <Text style={styles.registerTitle}>{t("lh")}</Text>
+      <Text style={{ color: "red", fontSize: 20 }}>{error}</Text>
       <View style={styles.formContainer}>
         <TextInput
           style={styles.input}
-          placeholder="Email"
+          placeholder={t("email")}
           value={email}
           onChangeText={setEmail}
           keyboardType="email-address"
@@ -58,13 +58,13 @@ const LoginForm = () => {
         />
         <TextInput
           style={styles.input}
-          placeholder="Password"
+          placeholder={t("pwd")}
           value={password}
           onChangeText={setPassword}
           secureTextEntry
         />
         <TouchableOpacity style={styles.btn} onPress={login}>
-          <Text style={styles.btnText}>Sign In</Text>
+          <Text style={styles.btnText}>{t("login")}</Text>
         </TouchableOpacity>
       </View>
     </View>

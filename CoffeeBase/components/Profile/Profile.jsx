@@ -12,10 +12,9 @@ import { useEffect, useState } from "react";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import profile from "../../assets/img/user.png";
 import { useSelector } from "react-redux";
-import { useRouter } from "expo-router"
+import { useRouter } from "expo-router";
 import "../../locales/index";
 import { useTranslation } from "react-i18next";
-import i18n from "i18next";
 
 const Profile = () => {
   const [name, setName] = useState("");
@@ -25,6 +24,7 @@ const Profile = () => {
   const [error, SetError] = useState("");
   const user = useSelector((state) => state.user.value);
   const router = useRouter();
+  const { t } = useTranslation();
 
   useEffect(() => {
     fetchUserData();
@@ -87,8 +87,8 @@ const Profile = () => {
     SetError("");
     updateUserData();
   };
-  if(user.id === "") {
-    router.push("/login")
+  if (user.id === "") {
+    router.push("/login");
   }
   if (loading) {
     return (
@@ -104,7 +104,7 @@ const Profile = () => {
   if (error === "fetch") {
     return (
       <ErrorMessage
-        m={"Oops an error occured\nFailed to find your data"}
+        m={`${t("oops")}\n${t("fd")}`}
         onRetry={onRetryFetch}
       />
     );
@@ -112,7 +112,7 @@ const Profile = () => {
   if (error === "update") {
     return (
       <ErrorMessage
-        m={"Oops an error occured\nFailed to update profile"}
+        m={`${t("oops")}\n${t("ud")}`}
         onRetry={onRetryUpdate}
       />
     );
@@ -126,7 +126,7 @@ const Profile = () => {
             style={styles.inputStyles}
             value={name}
             onChangeText={setName}
-            placeholder="Username"
+            placeholder={t("unm")}
           />
         </View>
       </View>
@@ -136,7 +136,7 @@ const Profile = () => {
             style={styles.inputStyles}
             value={email}
             onChangeText={setEmail}
-            placeholder="Email"
+            placeholder={t("email")}
           />
         </View>
       </View>
@@ -146,13 +146,13 @@ const Profile = () => {
             style={styles.textAreaStyles}
             value={bio}
             onChangeText={setBio}
-            placeholder="Bio"
+            placeholder={t("bio")}
             multiline={true}
           />
         </View>
       </View>
       <TouchableOpacity style={styles.btnStyles} onPress={updateUserData}>
-        <Text style={styles.btnText}>Update Profile</Text>
+        <Text style={styles.btnText}>{t("updp")}</Text>
       </TouchableOpacity>
     </View>
   );
