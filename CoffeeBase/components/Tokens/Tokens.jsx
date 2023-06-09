@@ -18,6 +18,10 @@ import t4 from "../../assets/img/t4.png";
 import t5 from "../../assets/img/t5.png";
 import t6 from "../../assets/img/t6.png";
 
+import "../../locales/index";
+import { useTranslation } from "react-i18next";
+import i18n from "i18next";
+
 const data = [
   {
     id: 0,

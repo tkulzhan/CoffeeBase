@@ -11,6 +11,9 @@ import {
 } from "react-native";
 import styles from "./styles";
 import user from "../../assets/img/user.png";
+import "../../locales/index";
+import { useTranslation } from "react-i18next";
+import i18n from "i18next";
 
 const CreateUser = () => {
   const router = useRouter();

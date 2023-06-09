@@ -13,6 +13,9 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import profile from "../../assets/img/user.png";
 import { useSelector } from "react-redux";
 import { useRouter } from "expo-router"
+import "../../locales/index";
+import { useTranslation } from "react-i18next";
+import i18n from "i18next";
 
 const Profile = () => {
   const [name, setName] = useState("");
@@ -44,8 +47,8 @@ const Profile = () => {
   };
 
   const updateUserData = async () => {
-    setLoading(true);
     try {
+      setLoading(true);
       const response = await fetch(
         `http://localhost:3001/client/api/updateClient/${user.id}`,
         {

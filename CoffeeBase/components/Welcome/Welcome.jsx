@@ -9,6 +9,9 @@ import {
 import styles from "./welcome.style";
 import { useState } from "react";
 import search from "../../assets/img/search.png";
+import "../../locales/index";
+import { useTranslation } from "react-i18next";
+import i18n from "i18next";
 
 const typesOfCoffee = ["Cyber Space", "Coffee", "Members"];
 

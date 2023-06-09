@@ -7,6 +7,10 @@ import img2 from "../../assets/img/img2.jpg";
 import img3 from "../../assets/img/img3.jpg";
 import img4 from "../../assets/img/img4.jpg";
 
+import "../../locales/index";
+import { useTranslation } from "react-i18next";
+import i18n from "i18next";
+
 const data = [
   {
     id: 1,

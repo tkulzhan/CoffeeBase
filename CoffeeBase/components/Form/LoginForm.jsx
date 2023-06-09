@@ -6,6 +6,9 @@ import user from "../../assets/img/user.png";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/userSlice";
 import { useRouter } from "expo-router";
+import "../../locales/index";
+import { useTranslation } from "react-i18next";
+import i18n from "i18next";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");

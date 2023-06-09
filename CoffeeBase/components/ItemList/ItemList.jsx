@@ -12,6 +12,9 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import { useDispatch } from "react-redux";
 import { setMarket } from "../../store/marketSlice";
 import styles from "./styles";
+import "../../locales/index";
+import { useTranslation } from "react-i18next";
+import i18n from "i18next";
 
 const ItemList = () => {
   const [data, setData] = useState([]);

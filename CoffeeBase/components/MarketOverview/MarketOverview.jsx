@@ -19,6 +19,10 @@ import c5 from "../../assets/img/c5.png";
 import c6 from "../../assets/img/c6.png";
 import cb from "../../assets/img/cb.jpg";
 
+import "../../locales/index";
+import { useTranslation } from "react-i18next";
+import i18n from "i18next";
+
 const data = [
   {
     id: 0,
