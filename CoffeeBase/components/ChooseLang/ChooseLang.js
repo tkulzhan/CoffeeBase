@@ -21,7 +21,13 @@ function ChooseLang() {
   };
 
   return (
-    <View style={{ marginHorizontal: "12%", backgroundColor: "rgba(0, 0, 0, 0.5)" }}>
+    <View
+      style={{
+        marginHorizontal: "12%",
+        marginVertical: 2 + "%",
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+      }}
+    >
       <Text style={{ color: "white", fontSize: 22, textAlign: "left" }}>
         Choose language:
       </Text>

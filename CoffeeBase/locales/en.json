@@ -15,7 +15,7 @@
   "logout": "Logout",
   "login": "Login",
   "admin": "Admin",
-  "logh": "Sign into your account",
+  "lh": "Sign into your account",
   "email": "Email",
   "pwd": "Password",
   "cmp": "Coffee Marketplace",
@@ -26,5 +26,7 @@
   "fd": "Failed to find your data",
   "ud": "Failed to update profile",
   "rtr": "Retry",
-  "fp": "Failed to load the coffee"
+  "fp": "Failed to load the coffee",
+  "ct": "Choose Theme",
+  "cl": "Choose Language"
 }
