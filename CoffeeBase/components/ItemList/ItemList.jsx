@@ -84,10 +84,7 @@ const ItemList = () => {
   }
   if (error === "fetch") {
     return (
-      <ErrorMessage
-        m={"Oops an error occured\nFailed to get our products"}
-        onRetry={onRetryFetch}
-      />
+      <ErrorMessage m={`${t("oops")}\n${t("fp")}`} onRetry={onRetryFetch} />
     );
   }
 

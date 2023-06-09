@@ -25,5 +25,6 @@
   "oops": "Oops an error occured",
   "fd": "Failed to find your data",
   "ud": "Failed to update profile",
-  "rtr": "Retry"
+  "rtr": "Retry",
+  "fp": "Failed to load the coffee"
 }
