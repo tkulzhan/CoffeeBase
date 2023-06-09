@@ -1,6 +1,6 @@
 import News from "../components/News/News";
 import Welcome from "../components/Welcome/Welcome";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import Drawer from "../components/Drawer/Drawer";
 import MarketOverview from "../components/MarketOverview/MarketOverview";
 import Tokens from "../components/Tokens/Tokens";
