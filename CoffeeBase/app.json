@@ -5,6 +5,14 @@
       "bundler": "metro"
     },
     "name": "CoffeeBase",
-    "slug": "CoffeeBase"
+    "slug": "CoffeeBase",
+    "icon": "./assets/icon.png",
+    "orientation": "portrait",
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    }
   }
 }
