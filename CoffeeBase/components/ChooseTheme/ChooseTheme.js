@@ -2,7 +2,6 @@ import { storeTheme, getTheme } from "../../localStorage/LocalStorage";
 import { useEffect, useState } from "react";
 import "../../locales/index";
 import { useTranslation } from "react-i18next";
-import i18n from "i18next";
 import { View, Text, TouchableOpacity } from "react-native";
 
 function ChooseTheme() {
@@ -52,14 +51,6 @@ function ChooseTheme() {
         style={{ color: "white", textAlign: "left", fontSize: 16 }}
       >
         Light
-      </Text>
-      <Text
-        onPress={() => {
-          changeTheme("dark");
-        }}
-        style={{ color: "white", textAlign: "left", fontSize: 16 }}
-      >
-        Dark
       </Text>
     </View>
   );
