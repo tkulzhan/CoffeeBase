@@ -28,5 +28,11 @@
   "rtr": "Retry",
   "fp": "Failed to load the coffee",
   "ct": "Choose Theme",
-  "cl": "Choose Language"
+  "cl": "Choose Language",
+  "buy": "Buy",
+  "cancel": "Cancel",
+  "pcn": "Card number",
+  "pem": "Expiry Month",
+  "pey": "Expiry Year",
+  "pay": "Pay"
 }
