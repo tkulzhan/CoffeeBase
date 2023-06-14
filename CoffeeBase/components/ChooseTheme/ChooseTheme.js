@@ -35,7 +35,7 @@ function ChooseTheme() {
       }}
     >
       <Text style={{ color: "white", fontSize: 22, textAlign: "left" }}>
-        Choose theme:
+        {t("ct")}
       </Text>
       <Text
         onPress={() => {

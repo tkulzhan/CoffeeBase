@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import "../../locales/index";
 import i18n from "i18next";
 import { View, Text, TouchableOpacity } from "react-native";
+import { useTranslation } from "react-i18next";
 
 function ChooseLang() {
   useEffect(() => {
@@ -20,6 +21,8 @@ function ChooseLang() {
     i18n.changeLanguage(lang);
   };
 
+  const { t } = useTranslation();
+
   return (
     <View
       style={{
@@ -29,7 +32,7 @@ function ChooseLang() {
       }}
     >
       <Text style={{ color: "white", fontSize: 22, textAlign: "left" }}>
-        Choose language:
+        {t("cl")}
       </Text>
       <Text
         onPress={() => {
